@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './App.css';
+import { connect } from "react-redux";
+import { getImageFromActionCreater } from "./actions/action";
 
-function App() {
+function App(props) {
+  console.log('props******', props.currentImg);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
+      <a
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={() => props.selectCurrentImage()}
         >
           Learn React
         </a>
+          <img src={props.currentImg} className="App-logo" alt="logo" />
+      </a>
+        {/* <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p> */}
       </header>
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    currentImg: state.currentImage
+  }
+}
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectCurrentImage: () => dispatch(getImageFromActionCreater())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
