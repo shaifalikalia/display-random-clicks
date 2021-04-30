@@ -12,8 +12,6 @@ function App(props) {
           className="App-link"
           onClick={() => props.selectCurrentImage()}
         >
-          Learn React
-        </a>
           <img src={props.currentImg} className="App-logo" alt="logo" />
       </a>
         {/* <p>
